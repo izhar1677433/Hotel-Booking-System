@@ -22,73 +22,121 @@ import HeroImg4lg from "../assets/images/rooms/4-lg.png";
 import HeroImg4th from "../assets/images/rooms/4.png";
 import HeroImg5lg from "../assets/images/rooms/5-lg.png";
 import HeroImg5th from "../assets/images/rooms/5.png";
+import Room1 from "../assets/images/rooms/room1.jpg";
+import Room2 from "../assets/images/rooms/room2.jpg";
+import Room3 from "../assets/images/rooms/room3.jpg";
+import Room4 from "../assets/images/rooms/room4.jpg";
+import Room5 from "../assets/images/rooms/room5.jpg";
+import Room6 from "../assets/images/rooms/room6.jpg";
+import Room7 from "../assets/images/rooms/room7.jpg";
+import Room8 from "../assets/images/rooms/room8.jpg";
 
 
 const slides = [
   {
     title: "Your Luxury Hotel For Vacation",
     background: HeroImg1,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Your Luxury Hotel For Vacation",
     background: HeroImg2,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Your Luxury Hotel For Vacation",
     background: HeroImg3,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Summer Vacation",
     background: HeroImg1lg,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "winter Vacation",
     background: HeroImg1st,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Best Service",
     background: HeroImg2lg,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Clean and Green Rooms",
     background: HeroImg2nd,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Vip Rooms",
     background: HeroImg3lg,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Your Luxury Hotel For Vacation",
     background: HeroImg3rd,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Your Luxury Hotel For Vacation",
     background: HeroImg4lg,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Your Luxury Hotel For Vacation",
     background: HeroImg4th,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Your Luxury Hotel For Vacation",
     background: HeroImg5lg,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
   },
   {
     title: "Your Luxury Hotel For Vacation",
     background: HeroImg5th,
-    btnText: "See our rooms",
+    btnText: "Take Tour",
+  },
+  {
+    title: "Your Luxury Hotel For Vacation",
+    background: Room1,
+    btnText: "Take Tour",
+  },
+  {
+    title: "Your Luxury Hotel For Vacation",
+    background: Room2,
+    btnText: "Take Tour",
+  },
+  {
+    title: "Your Luxury Hotel For Vacation",
+    background: Room3,
+    btnText: "Take Tour",
+  },
+  {
+    title: "Your Luxury Hotel For Vacation",
+    background: Room4,
+    btnText: "Take Tour",
+  },
+  {
+    title: "Your Luxury Hotel For Vacation",
+    background: Room5,
+    btnText: "Take Tour",
+  },
+  {
+    title: "Your Luxury Hotel For Vacation",
+    background: Room6,
+    btnText: "Take Tour",
+  },
+  {
+    title: "Your Luxury Hotel For Vacation",
+    background: Room7,
+    btnText: "Take Tour",
+  },
+  {
+    title: "Your Luxury Hotel For Vacation",
+    background: Room8,
+    btnText: "Take Tour",
   },
 ];
 
@@ -123,7 +171,7 @@ const HeroSlider = () => {
                   {title}
                 </h1>
                 <button className="btn btn-primary btn-lg bg-blue-500 mx-auto">
-                  {btnText}
+                  <a href="https://app.lapentor.com/sphere/virtual-tour-to-the-hotal">{btnText}</a>
                 </button>
               </div>
 

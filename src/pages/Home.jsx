@@ -3,7 +3,10 @@ import React from "react";
 // import components
 import HeroSlider from "../components/HeroSlider";
 import BookForm from "../components/BookForm";
-import Rooms from "../components/Rooms";
+import Rooms from "./Rooms";
+
+
+
 
 const Home = () => {
   return (
@@ -11,6 +14,8 @@ const Home = () => {
       <HeroSlider />
       <BookForm />
       <Rooms />
+      
+      
     </>
   );
 };

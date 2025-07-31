@@ -1,71 +1,90 @@
+import React from "react";
+import { Icon } from "@iconify/react";
 
-     import React from "react";
-import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-8">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="mt-12 bg-gray-900 py-20 text-white ">
+      <div className="container mx-auto grid grid-cols-1 gap-8 px-4 md:grid-cols-4">
         {/* Contact Section */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-          <p className="text-gray-400">Email: info@hotelbooking.com</p>
-          <p className="text-gray-400">Phone: 03181677433</p>
-          <p className="text-gray-400">Address: Capital of Pakistan Islamabad</p>
+          <h3 className="mb-4 text-xl font-semibold">Contact Us</h3>
+          <p className="text-white">Email: royalheights@486.com</p>
+          <p className="text-white">Phone: 03181677433</p>
+          <p className="text-white">
+            Address: Capital of Pakistan Islamabad
+          </p>
         </div>
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+          <h3 className="mb-4 text-xl font-semibold">Quick Links</h3>
           <ul className="space-y-2">
-            <li><a href="/about" className="text-gray-400 hover:text-white">About Us</a></li>
-            <li><a href="/rooms" className="text-gray-400 hover:text-white">Rooms</a></li>
-            <li><a href="/booking" className="text-gray-400 hover:text-white">Book Now</a></li>
-            <li><a href="/contact" className="text-gray-400 hover:text-white">Restaurant</a></li>
-            <li><a href="/contact" className="text-gray-400 hover:text-white">Contact</a></li>
+            <li>
+              <a href="/about" className="text-white hover:text-white">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="/rooms" className="text-white hover:text-white">
+                Rooms
+              </a>
+            </li>
+            <li>
+              <a href="/booking" className="text-white hover:text-white">
+                Book Now
+              </a>
+            </li>
+            <li>
+              <a href="/contact" className=" text-white hover:text-white">
+                Restaurant
+              </a>
+            </li>
+            <li>
+              <a href="/contact" className="text-white hover:text-white">
+                Contact
+              </a>
+            </li>
           </ul>
         </div>
 
         {/* Social Media */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
-          <div className="flex space-x-4">
-            <a href="https://facebook.com" className="text-gray-400 hover:text-white">
-              <span className="sr-only">Facebook</span>
-              <i className="fab fa-facebook-f"></i> {/* Replace with FontAwesomeIcon if using React */}
+          <h3 className="mb-4 text-xl font-semibold ">Follow Us</h3>
+
+          
+
+          <div className="gap-5 flex  flex-col">
+            <a href="">
+              <Icon icon="uiw:facebook" width="20" height="20" />
             </a>
-            <a href="https://twitter.com" className="text-gray-400 hover:text-white">
-              <span className="sr-only">Twitter</span>
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="https://instagram.com" className="text-gray-400 hover:text-white">
-              <span className="sr-only">Instagram</span>
-              <i className="fab fa-instagram"></i>
-            </a>
+            <a href=""><Icon icon="skill-icons:instagram" width="26" height="26" /></a>
+            <a href=""><Icon icon="bi:github" width="26" height="26" /></a>
+            <a href=""><Icon icon="mdi:email" width="24" height="24" /></a>
           </div>
         </div>
 
         {/* Newsletter */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">Newsletter</h3>
-          <p className="text-gray-400 mb-2">Subscribe for exclusive offers!</p>
+          <h3 className="mb-4 text-xl font-semibold">Newsletter</h3>
+          <p className="mb-2 text-white">Subscribe for exclusive offers!</p>
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full p-2 rounded-t-lg text-gray-800 focus:outline-none pb-2"
+            className="w-full rounded-t-lg p-2 pb-2 text-gray-800 focus:outline-none"
           />
-          <button className="w-full bg-blue-600 text-white mb-1 py-2 rounded-b-lg hover:bg-blue-700 transition duration-200">
+          <button className="mb-1 w-full rounded-b-lg bg-blue-600 py-2 text-white transition duration-200 hover:bg-blue-700">
             Subscribe
           </button>
         </div>
       </div>
-      <div className="mt-8 text-center text-gray-400">
-        <p>&copy; {new Date().getFullYear()} Hotel Booking System. All rights reserved.</p>
+      <div className="mt-20 text-center text-white">
+        <p>
+          &copy; {new Date().getFullYear()} Hotel Booking System. All rights
+          reserved.
+        </p>
       </div>
     </footer>
   );
 };
-
-
-;
 
 export default Footer;

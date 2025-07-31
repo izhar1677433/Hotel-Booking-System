@@ -14,14 +14,21 @@ import AdultsDropdown from "../components/AdultsDropdown";
 import KidsDropdown from "../components/KidsDropdown";
 import ScrollToTop from "../components/ScrollToTop";
 
+
 const RoomDetails = () => {
-  const { rooms } = useContext(RoomContext);
+ const { rooms, loading } = useContext(RoomContext);
+
+  console.log(rooms,"")
   const { id } = useParams();
+console.log("id",id);
 
   // get room
   const room = rooms.find((room) => {
+    
     return room.id === Number(id);
   });
+
+  console.log(room,"adadasda")
 
   // destructure room
   const { name, description, facilities, imageLg, price } = room;
@@ -99,9 +106,10 @@ const RoomDetails = () => {
                   <KidsDropdown />
                 </div>
               </div>
-
+               
               <button className="btn btn-lg btn-primary w-full">
-                Book noe from ${price}
+                <a href="/C:\Users\UC\Desktop\fyp\Payment-integration\">
+                Book now from ${price}</a>
               </button>
             </div>
 

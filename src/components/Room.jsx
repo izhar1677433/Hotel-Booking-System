@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BsArrowsFullscreen, BsPeople } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const Room = ({ room }) => {
   const { id, name, image, size, maxPerson, description, price } = room;
+  console.log("room", room);
+  const navigate = useNavigate()
 
+ 
+    
   return (
     // destructure room / room card
     <div className="group min-h-[500px] bg-white shadow-2xl">
@@ -60,7 +65,8 @@ const Room = ({ room }) => {
       <Link
         to={`/room/${id}`}
         className="btn btn-secondary bg-blue-500 btn-sm mx-auto max-w-[240px] rounded-lg"
-      >
+      onClick={()=>navigate("/")}>
+
         Book now from ${price}
       </Link>
     </div>

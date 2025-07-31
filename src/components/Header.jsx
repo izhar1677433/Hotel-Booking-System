@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Login from "../pages/Login";
 
-// import header logo
-import LogoDark from "../assets/images/rooms/dark.svg";
-import LogoWhite from "../assets/images/rooms/white.svg";
+import logo5 from "../assets/images/rooms/logo5.png";
 
 const Header = () => {
   const [header, setHeader] = useState(false);
@@ -12,34 +12,36 @@ const Header = () => {
       window.scrollY > 50 ? setHeader(true) : setHeader(false);
     });
   });
-
+const handle =() => {
+  Navigate("/Login")
+}
   return (
-    <header className="header bg-transparent">
+    <header className="header ">
       <div
         className={`${
-          header ? "bg-white py-6 shadow-lg" : "bg-transparent py-8"
-        } fixed z-50 w-full transition-all duration-500`}
+          header ? "py-3 shadow-lg" : " py-1"
+        } fixed z-50 w-full transition-all duration-500 bg-gray-900 text-white`}
       >
-        <div className="container mx-auto flex flex-col items-center gap-y-6 lg:flex-row lg:justify-between lg:gap-y-0">
+        <div className="container mx-auto flex flex-col  items-center gap-y-6 lg:flex-row lg:justify-between lg:gap-y-0">
           {/* header logo */}
-          <a href="/" className="bg-gray-100 ">
+          <a href="/" className=" ">
             {header ? (
               <img
-                src={LogoWhite}
+                src={logo5}
                 alt="header logo"
-                className="w-[80px] bg-transparent "
+                className="w-[80px] "
               />
             ) : (
               <img
-                src={LogoDark}
+                src={logo5}
                 alt="header logo"
-                className="w-[80px]  bg-transparent "
+                className="w-[80px]  "
               />
             )}
           </a>
 
           {/* header menu */}
-          <div className={`${header ? "text-primary" : "text-white"}`}>
+          <div className={`${header ? "" : "text-white"}`}>
             <ul className="flex items-center gap-x-6 font-tertiary text-[15px] uppercase tracking-[1.5px] lg:gap-x-8">
               <a href="/" className="transition hover:text-accent">
                 Home
@@ -61,12 +63,9 @@ const Header = () => {
           </div>
           <div className="button flex flex-row justify-center gap-10 text-white float-right   ">
             <button className="hover:text-accen me-2 w-full  dark:focus:ring-blue-80 mb-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 ">
-              <a href="">Login</a>
+              <a href="../pages/Login" >Login</a>
             </button>
-            <button className="hover:text-accen me-2 dark:focus:ring-blue-80 mb-2  rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700">
-              {" "}
-              <a href="">Signup</a>
-            </button>
+            
           </div>
         </div>
       </div>
