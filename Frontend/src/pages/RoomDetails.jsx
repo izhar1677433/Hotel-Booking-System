@@ -139,7 +139,10 @@ const RoomDetails = () => {
       <ScrollToTop />
 
       {/* room banner */}
-      <div className="relative flex h-[560px] items-center justify-center bg-room bg-cover bg-center">
+      <div
+        className="relative flex h-[560px] items-center justify-center bg-cover bg-center"
+        style={{ backgroundImage: `url(/src/assets/images/rooms/${image})` }}
+      >
         <div className="absolute inset-0 z-10 bg-black/60" />
         <h1 className="relative z-20 text-center font-primary text-6xl text-white">{name} Details</h1>
       </div>
