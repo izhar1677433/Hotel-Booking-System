@@ -12,22 +12,13 @@ import {
 
 // rooms images
 import Room1Img from "./assets/images/rooms/1.png";
-import Room1ImgLg from "./assets/images/rooms/1-lg.png";
 import Room2Img from "./assets/images/rooms/2.png";
-import Room2ImgLg from "./assets/images/rooms/2-lg.png";
 import Room3Img from "./assets/images/rooms/3.png";
-import Room3ImgLg from "./assets/images/rooms/3-lg.png";
 import Room4Img from "./assets/images/rooms/4.png";
-import Room4ImgLg from "./assets/images/rooms/4-lg.png";
 import Room5Img from "./assets/images/rooms/5.png";
-import Room5ImgLg from "./assets/images/rooms/5-lg.png";
 import Room6Img from "./assets/images/rooms/6.png";
-import Room6ImgLg from "./assets/images/rooms/6-lg.png";
 import Room7Img from "./assets/images/rooms/7.png";
-import Room7ImgLg from "./assets/images/rooms/7-lg.png";
 import Room8Img from "./assets/images/rooms/8.png";
-import Room8ImgLg from "./assets/images/rooms/8-lg.png";
-import { p } from "framer-motion/client";
 
 export const roomData = [
   {
@@ -49,7 +40,6 @@ export const roomData = [
     maxPerson: 1,
     price: 115,
     image: Room1Img,
-    imageLg: Room1ImgLg,
   },
   {
     id: 2,
@@ -70,7 +60,6 @@ export const roomData = [
     maxPerson: 2,
     price: 220,
     image: Room2Img,
-    imageLg: Room2ImgLg,
   },
   {
     id: 3,
@@ -91,7 +80,6 @@ export const roomData = [
     maxPerson: 3,
     price: 265,
     image: Room3Img,
-    imageLg: Room3ImgLg,
   },
   {
     id: 4,
@@ -112,7 +100,6 @@ export const roomData = [
     maxPerson: 4,
     price: 289,
     image: Room4Img,
-    imageLg: Room4ImgLg,
   },
   {
     id: 5,
@@ -133,7 +120,6 @@ export const roomData = [
     maxPerson: 5,
     price: 320,
     image: Room5Img,
-    imageLg: Room5ImgLg,
   },
   {
     id: 6,
@@ -153,7 +139,6 @@ export const roomData = [
     maxPerson: 6,
     price: 344,
     image: Room6Img,
-    imageLg: Room6ImgLg,
   },
   {
     id: 7,
@@ -173,7 +158,6 @@ export const roomData = [
     maxPerson: 7,
     price: 389,
     image: Room7Img,
-    imageLg: Room7ImgLg,
   },
   {
     id: 8,
@@ -194,7 +178,6 @@ export const roomData = [
     maxPerson: 8,
     price: 499,
     image: Room8Img,
-    imageLg: Room8ImgLg,
   },
   {
     id: 9,
@@ -216,6 +199,5 @@ export const roomData = [
     maxPerson: 9,
     price: 500,
     image: Room3Img,
-    imageLg: Room3ImgLg,
   },
 ];
