@@ -49,7 +49,7 @@ const RoomDetails = () => {
     const fetchRoom = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`http://localhost:5000/api/rooms/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms/${id}`);
         console.log("Fetched room from MongoDB:", res.data); // ✅ ADD THIS
         setRoom(res.data);
         console.log(res);
@@ -74,6 +74,14 @@ const RoomDetails = () => {
 
   // destructure room
   const { name, description, facilities, price, image, roomNumber } = room;
+
+  // Resolve image URLs via Vite for production builds
+  const roomImages = import.meta.glob('../assets/images/rooms/*', {
+    eager: true,
+    as: 'url',
+  });
+  const defaultImageUrl = new URL('../assets/images/not-found.jpg', import.meta.url).href;
+  const roomImageUrl = roomImages[`../assets/images/rooms/${image}`] || defaultImageUrl;
 
   const handleBooking = async () => {
     // Check if user is authenticated
@@ -141,7 +149,7 @@ const RoomDetails = () => {
       {/* room banner */}
       <div
         className="relative flex h-[560px] items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: `url(/src/assets/images/rooms/${image})` }}
+        style={{ backgroundImage: `url(${roomImageUrl})` }}
       >
         <div className="absolute inset-0 z-10 bg-black/60" />
         <h1 className="relative z-20 text-center font-primary text-6xl text-white">{name} Details</h1>
@@ -155,7 +163,7 @@ const RoomDetails = () => {
             <h2 className="h2">{name}</h2>
             <p className="mb-8">{description}</p>
             <img
-              src={`/src/assets/images/rooms/${image}`}
+              src={roomImageUrl}
               alt="room details image"
               className="mb-8"
             />

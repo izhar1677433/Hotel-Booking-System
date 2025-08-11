@@ -24,7 +24,7 @@ const Rooms = () => {
   const fetchRooms = async () => {
   setLoading(true);
   try {
-    const res = await axios.get("http://localhost:5000/api/rooms/getAllRooms");
+    const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms/getAllRooms`);
           setRooms(res.data);
     // setAllRooms(res.data);
   } catch (err) {

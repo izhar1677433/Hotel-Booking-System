@@ -7,7 +7,7 @@ const stripePromise = loadStripe("pk_test_YOUR_PUBLISHABLE_KEY_HERE");
 const Payment = () => {
   const handleCheckout = async () => {
     const stripe = await stripePromise;
-    const response = await fetch("http://localhost:5000/api/bookings/create-checkout-session", {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/bookings/create-checkout-session`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

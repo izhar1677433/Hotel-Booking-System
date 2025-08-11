@@ -23,7 +23,7 @@ export default function AdminRooms() {
   // Fetch rooms and extract facilities
   const fetchRooms = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/admin/rooms", {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/rooms`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -56,7 +56,7 @@ export default function AdminRooms() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this room?")) return;
     try {
-      await fetch(`http://localhost:5000/api/admin/rooms/${id}`, {
+      await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/rooms/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -74,7 +74,7 @@ export default function AdminRooms() {
     try {
       if (isEditing) {
         // UPDATE
-        await fetch(`http://localhost:5000/api/admin/rooms/${editingId}`, {
+        await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/rooms/${editingId}`, {
           method: "PUT",
           headers: { 
             "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export default function AdminRooms() {
         });
       } else {
         // CREATE
-        await fetch("http://localhost:5000/api/admin/rooms", {
+        await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/rooms`, {
           method: "POST",
           headers: { 
             "Content-Type": "application/json",
