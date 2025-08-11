@@ -132,7 +132,7 @@ const SignUpForm = ({
 
       <div className="inline-block w-20 border-[1px] border-solid border-white"></div>
       <p className="mt-4 text-sm text-black">
-        <a href="${import.meta.env.VITE_BASE_URL}/pages/Login`">
+        <a href={`${import.meta.env.VITE_BASE_URL}/pages/Login`}>
           Already have an account?
         </a>
       </p>
