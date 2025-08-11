@@ -12,15 +12,10 @@ import "swiper/css/effect-fade";
 import HeroImg1 from "../assets/images/heroSlider/1.jpg";
 import HeroImg2 from "../assets/images/heroSlider/2.jpg";
 import HeroImg3 from "../assets/images/heroSlider/3.jpg";
-import HeroImg1lg from "../assets/images/rooms/1-lg.png";
 import HeroImg1st from "../assets/images/rooms/1.png";
-import HeroImg2nd from "../assets/images/rooms/2-lg.png";
 import HeroImg2lg from "../assets/images/rooms/2.png";
-import HeroImg3lg from "../assets/images/rooms/3-lg.png";
 import HeroImg3rd from "../assets/images/rooms/3.png";
-import HeroImg4lg from "../assets/images/rooms/4-lg.png";
 import HeroImg4th from "../assets/images/rooms/4.png";
-import HeroImg5lg from "../assets/images/rooms/5-lg.png";
 import HeroImg5th from "../assets/images/rooms/5.png";
 import Room1 from "../assets/images/rooms/room1.jpg";
 import Room2 from "../assets/images/rooms/room2.jpg";
@@ -50,7 +45,7 @@ const slides = [
   },
   {
     title: "Summer Vacation",
-    background: HeroImg1lg,
+    background: HeroImg1,
     btnText: "Take Tour",
   },
   {
@@ -65,12 +60,12 @@ const slides = [
   },
   {
     title: "Clean and Green Rooms",
-    background: HeroImg2nd,
+    background: HeroImg2,
     btnText: "Take Tour",
   },
   {
     title: "Vip Rooms",
-    background: HeroImg3lg,
+    background: HeroImg3,
     btnText: "Take Tour",
   },
   {
@@ -80,7 +75,7 @@ const slides = [
   },
   {
     title: "Your Luxury Hotel For Vacation",
-    background: HeroImg4lg,
+    background: Room3,
     btnText: "Take Tour",
   },
   {
@@ -90,7 +85,7 @@ const slides = [
   },
   {
     title: "Your Luxury Hotel For Vacation",
-    background: HeroImg5lg,
+    background: Room5,
     btnText: "Take Tour",
   },
   {
