@@ -140,13 +140,8 @@ const RoomDetails = () => {
 
       {/* room banner */}
       <div className="relative flex h-[560px] items-center justify-center bg-room bg-cover bg-center">
-        {/* room overlay */}
-        <div className="absolute top-0 left-0 h-full w-full bg-black/50" />
-
-        {/* room title */}
-        <h1 className="z-20 text-center font-primary text-6xl text-white">
-          {name} Details
-        </h1>
+        <div className="absolute inset-0 z-10 bg-black/60" />
+        <h1 className="relative z-20 text-center font-primary text-6xl text-white">{name} Details</h1>
       </div>
 
       {/* room data */}
