@@ -1,261 +1,77 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo5 from "../assets/images/rooms/logo5.png";
 import { useAuth } from "../context/AuthContext";
-import { Menu, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  
   const [header, setHeader] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
   
   useEffect(() => {
-    const handleScroll = () => {
+    window.addEventListener("scroll", () => {
       window.scrollY > 50 ? setHeader(true) : setHeader(false);
-    };
-    
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const isActive = (path) => {
-    return location.pathname === path;
+    });
+  });
+  const handle = () => {
+    Navigate("/Login");
   };
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
   return (
-    <header className="header">
+    <header className="header w-full">
       <div
-        className={`${
-          header ? "py-3 shadow-lg" : "py-1"
+        className={`$${
+          header ? "py-3 shadow-lg" : " py-1"
         } fixed z-50 w-full bg-gray-900 text-white transition-all duration-500`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-8">
-          {/* Header Logo */}
-          <Link to="/" className="flex items-center">
-            <img 
-              src={logo5} 
-              alt="Royal Heights Logo" 
-              className={`transition-all duration-300 ${
-                header ? "w-16" : "w-20"
-              }`} 
-            />
-          </Link>
+        <div className="mx-auto flex flex-col items-center gap-y-4 px-2 sm:px-6 md:px-10 lg:flex-row lg:justify-between lg:gap-y-0 w-full">
+          {/* header logo */}
+          <a href="/" className="pl-4 sm:pl-8 md:pl-[60px] lg:pl-[100px] flex-shrink-0">
+            <img src={logo5} alt="header logo" className="w-[60px] sm:w-[70px] md:w-[80px]" />
+          </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex">
-            <ul className="flex items-center gap-8 font-tertiary text-lg uppercase tracking-wide">
-              <li>
-                <Link 
-                  to="/" 
-                  className={`transition-colors duration-200 hover:text-amber-400 ${
-                    isActive('/') ? 'text-amber-400' : 'text-white'
-                  }`}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/rooms" 
-                  className={`transition-colors duration-200 hover:text-amber-400 ${
-                    isActive('/rooms') ? 'text-amber-400' : 'text-white'
-                  }`}
-                >
-                  Rooms
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/restaurants" 
-                  className={`transition-colors duration-200 hover:text-amber-400 ${
-                    isActive('/restaurants') ? 'text-amber-400' : 'text-white'
-                  }`}
-                >
-                  Restaurants
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/contact" 
-                  className={`transition-colors duration-200 hover:text-amber-400 ${
-                    isActive('/contact') ? 'text-amber-400' : 'text-white'
-                  }`}
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/about" 
-                  className={`transition-colors duration-200 hover:text-amber-400 ${
-                    isActive('/about') ? 'text-amber-400' : 'text-white'
-                  }`}
-                >
-                  About
-                </Link>
-              </li>
+          {/* header menu */}
+          <div className={`${header ? "" : "gap-6 text-white"} w-full lg:w-auto`}> 
+            <ul className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 font-tertiary text-base sm:text-lg md:text-xl uppercase tracking-[1.5px] lg:gap-x-8 overflow-x-auto">
+              <a href="/" className="transition hover:text-accent px-2 py-1">Home</a>
+              <a href="/rooms" className="transition hover:text-accent px-2 py-1">Rooms</a>
+              <a href="/restaurants" className="transition hover:text-accent px-2 py-1">Restaurants</a>
+              <a href="/contact" className="transition hover:text-accent px-2 py-1">Contact</a>
+              <a href="/about" className="transition hover:text-accent px-2 py-1">About</a>
             </ul>
-          </nav>
-
-          {/* User Actions */}
-          <div className="hidden lg:flex items-center gap-4">
+          </div>
+          <div className="button flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 text-white w-full sm:w-auto mt-2 lg:mt-0 lg:mr-[100px]">
             {isAuthenticated() ? (
               <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-300">
-                  Welcome, {user.name}
-                </span>
+                <span className="text-sm">Welcome, {user.name}</span>
                 {user.role === 'admin' && (
                   <button 
                     onClick={() => navigate('/admin')}
-                    className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
+                    className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700"
                   >
                     Admin Panel
                   </button>
                 )}
                 <button 
-                  onClick={handleLogout}
-                  className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700"
+                  onClick={() => {
+                    logout();
+                    navigate('/');
+                  }}
+                  className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700"
                 >
                   Logout
                 </button>
               </div>
             ) : (
               <button 
-                onClick={() => navigate('/auth/login')}
-                className="rounded-lg bg-blue-500 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-600"
+                onClick={() => navigate('/pages/Login')}
+                className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-800"
               >
                 Login
               </button>
             )}
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={toggleMobileMenu}
-            className="lg:hidden rounded-lg p-2 text-white hover:bg-gray-800"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden">
-            <div className="border-t border-gray-700 bg-gray-800 px-4 py-6">
-              <nav className="mb-6">
-                <ul className="space-y-4 font-tertiary text-lg uppercase tracking-wide">
-                  <li>
-                    <Link 
-                      to="/" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`block transition-colors duration-200 hover:text-amber-400 ${
-                        isActive('/') ? 'text-amber-400' : 'text-white'
-                      }`}
-                    >
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      to="/rooms" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`block transition-colors duration-200 hover:text-amber-400 ${
-                        isActive('/rooms') ? 'text-amber-400' : 'text-white'
-                      }`}
-                    >
-                      Rooms
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      to="/restaurants" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`block transition-colors duration-200 hover:text-amber-400 ${
-                        isActive('/restaurants') ? 'text-amber-400' : 'text-white'
-                      }`}
-                    >
-                      Restaurants
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      to="/contact" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`block transition-colors duration-200 hover:text-amber-400 ${
-                        isActive('/contact') ? 'text-amber-400' : 'text-white'
-                      }`}
-                    >
-                      Contact
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      to="/about" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`block transition-colors duration-200 hover:text-amber-400 ${
-                        isActive('/about') ? 'text-amber-400' : 'text-white'
-                      }`}
-                    >
-                      About
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-
-              {/* Mobile User Actions */}
-              <div className="border-t border-gray-700 pt-6">
-                {isAuthenticated() ? (
-                  <div className="space-y-3">
-                    <div className="text-sm text-gray-300">
-                      Welcome, {user.name}
-                    </div>
-                    {user.role === 'admin' && (
-                      <button 
-                        onClick={() => {
-                          navigate('/admin');
-                          setMobileMenuOpen(false);
-                        }}
-                        className="w-full rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
-                      >
-                        Admin Panel
-                      </button>
-                    )}
-                    <button 
-                      onClick={() => {
-                        handleLogout();
-                        setMobileMenuOpen(false);
-                      }}
-                      className="w-full rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                ) : (
-                  <button 
-                    onClick={() => {
-                      navigate('/auth/login');
-                      setMobileMenuOpen(false);
-                    }}
-                    className="w-full rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700"
-                  >
-                    Login
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </header>
   );

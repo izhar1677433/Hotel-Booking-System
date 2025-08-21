@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 import { Link } from "react-router-dom";
 import { BsArrowsFullscreen, BsPeople } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +18,7 @@ const Room = ({ room }) => {
       {/* rom image */}
       <div className="overflow-hidden">
         <img
-          src={`src/assets/images/rooms/${image}`}
+          src={image ? (image.startsWith('/uploads/') ? `${BASE_URL}${image}` : `${BASE_URL}/uploads/${image}`) : ''}
           alt="room image"
           className="w-full transition-all duration-300 group-hover:scale-110"
         />

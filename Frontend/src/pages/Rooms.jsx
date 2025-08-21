@@ -1,48 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
-
-// import room context
 import { RoomContext } from "../context/RoomContext";
 import axios from "axios";
-
-
-
-
-// import room
 import Room from "../components/Room";
-
-// import react loader
 import { SpinnerDotted } from "spinners-react";
 
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
 const Rooms = () => {
-    const [rooms, setRooms] = useState([]);
-      const [loading, setLoading] = useState(false);
-    // const { fetchRooms } = useContext(RoomContext);
-
-
-
+  const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
   const fetchRooms = async () => {
   setLoading(true);
   try {
-    const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms/getAllRooms`);
+    const res = await axios.get(`${BASE_URL}/api/rooms/getAllRooms`);
           setRooms(res.data);
-    // setAllRooms(res.data);
   } catch (err) {
     console.error("Failed to fetch rooms:", err);
   } finally {
     setLoading(false);
   }
-
 };
-
   fetchRooms()
-
-
   }, [])
-  
-  console.log("rooms",rooms)
-  
-
   return (
     <section className="rooms pt-[130px]">
       {/* overlay & spinner loader */}

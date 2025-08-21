@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export default function AdminBookings() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ export default function AdminBookings() {
   const fetchBookings = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/bookings`, {
+      const response = await fetch(`${BASE_URL}/api/admin/bookings`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -49,7 +51,7 @@ export default function AdminBookings() {
   // Update booking status
   const updateBookingStatus = async (bookingId, newStatus) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/bookings/${bookingId}`, {
+      const response = await fetch(`${BASE_URL}/api/admin/bookings/${bookingId}`, {
         method: "PUT",
         headers: { 
           "Content-Type": "application/json",
@@ -78,7 +80,7 @@ export default function AdminBookings() {
     if (!selectedBooking) return;
     
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/bookings/${selectedBooking._id}`, {
+      const response = await fetch(`${BASE_URL}/api/admin/bookings/${selectedBooking._id}`, {
         method: "PUT",
         headers: { 
           "Content-Type": "application/json",
@@ -158,7 +160,7 @@ export default function AdminBookings() {
     if (!window.confirm("Are you sure you want to delete this booking?")) return;
     
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/bookings/${bookingId}`, {
+      const response = await fetch(`${BASE_URL}/api/admin/bookings/${bookingId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -24,7 +27,7 @@ function ContactPage() {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/contact/submit`, {
+      const response = await fetch(`${BASE_URL}/api/contact/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,10 +52,20 @@ function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-500 flex items-center justify-center p-6">
-      <div className="max-w-4xl w-full bg-white shadow-2xl  rounded-2xl  overflow-hidden flex">
+    <div className="min-h-screen  flex items-center justify-center p-6">
+      <motion.div
+        className="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden flex relative"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
         {/* Contact Information Section */}
-        <div className="w-1/2 bg-blue-500 text-white p-8 space-y-6 relative">
+        <motion.div
+          className="w-1/2 bg-black text-white p-8 space-y-6 relative"
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 4, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+        >
           <h2 className="text-2xl font-bold">Contact Information</h2>
           <p className="text-sm">Say something to start a live chat!</p>
           <div className="space-y-4">
@@ -80,7 +93,7 @@ function ContactPage() {
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
-              <span>Islamabad , Pakistan</span>
+              <span>G9-Sector  Islamabad</span>
             </div>
           </div>
           <div className="flex space-x-4 mt-6">
@@ -95,14 +108,19 @@ function ContactPage() {
             </svg>
           </div>
           <div className="absolute bottom-8 left-8">
-            <svg className="w-24 h-24 text-gray-700 opacity-10" fill="currentColor" viewBox="0 0 100 100">
+            <svg className="w-24 h-24 text-gray-700 opacity-20" fill="currentColor" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="40" />
             </svg>
           </div>
-        </div>
+  </motion.div>
 
         {/* Contact Form Section */}
-        <div className="w-1/2 p-8 space-y-6">
+        <motion.div
+          className="w-1/2 p-8 space-y-6"
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <input
@@ -177,13 +195,8 @@ function ContactPage() {
             </button>
           </form>
           
-          <div className="absolute bottom-8 right-8">
-            <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
-          </div>
-        </div>
-      </div>
+  </motion.div>
+      </motion.div>
     </div>
   );
 }

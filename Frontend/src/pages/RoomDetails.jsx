@@ -1,15 +1,6 @@
 import { useParams } from "react-router-dom";
 
-// import icons
 import { FaCheck } from "react-icons/fa";
-// import {
-//   FaWifi,
-//   FaSwimmer,
-//   FaTv,
-//   FaUtensils,
-//   FaParking,
-//   FaDumbbell,
-// } from "react-icons/fa";
 
 import React, { useContext, useEffect, useState } from "react";
 import { RoomContext } from "../context/RoomContext";
@@ -24,14 +15,11 @@ import AdultsDropdown from "../components/AdultsDropdown";
 import KidsDropdown from "../components/KidsDropdown";
 import ScrollToTop from "../components/ScrollToTop";
 import { loadStripe } from "@stripe/stripe-js";
-// const iconMap = {
-//   FaWifi: <FaWifi />,
-//   FaSwimmer: <FaSwimmer />,
-//   FaTv: <FaTv />,
-//   FaUtensils: <FaUtensils />,
-//   FaParking: <FaParking />,
-//   FaDumbbell: <FaDumbbell />,
-// };
+
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
 
 const RoomDetails = () => {
   const [room, setRoom] = useState();
@@ -49,7 +37,7 @@ const RoomDetails = () => {
     const fetchRoom = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms/${id}`);
+        const res = await axios.get(`${BASE_URL}/api/rooms/${id}`);
         console.log("Fetched room from MongoDB:", res.data); // ✅ ADD THIS
         setRoom(res.data);
         console.log(res);
@@ -75,19 +63,11 @@ const RoomDetails = () => {
   // destructure room
   const { name, description, facilities, price, image, roomNumber } = room;
 
-  // Resolve image URLs via Vite for production builds
-  const roomImages = import.meta.glob('../assets/images/rooms/*', {
-    eager: true,
-    as: 'url',
-  });
-  const defaultImageUrl = new URL('../assets/images/not-found.jpg', import.meta.url).href;
-  const roomImageUrl = roomImages[`../assets/images/rooms/${image}`] || defaultImageUrl;
-
   const handleBooking = async () => {
     // Check if user is authenticated
     if (!isAuthenticated()) {
       alert("Please login to book a room");
-      navigate('/pages/Login');
+      navigate("/pages/Login");
       return;
     }
 
@@ -116,16 +96,16 @@ const RoomDetails = () => {
         `${import.meta.env.VITE_BASE_URL}/api/bookings/create-checkout-session`,
         {
           method: "POST",
-          headers: { 
+          headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(payload),
         }
       );
 
       const data = await response.json();
-      
+
       // Navigate to Stripe checkout using the URL from the response
       if (data.url) {
         window.location.href = data.url;
@@ -137,22 +117,21 @@ const RoomDetails = () => {
       console.error("Booking error:", error);
       alert("Booking failed");
     }
-    
   };
-
-  
-
+  console.log("image", image);
   return (
     <section>
       <ScrollToTop />
 
       {/* room banner */}
-      <div
-        className="relative flex h-[560px] items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: `url(${roomImageUrl})` }}
-      >
-        <div className="absolute inset-0 z-10 bg-black/60" />
-        <h1 className="relative z-20 text-center font-primary text-6xl text-white">{name} Details</h1>
+      <div className="relative flex h-[560px] items-center justify-center bg-room bg-cover bg-center">
+        {/* room overlay */}
+        <div className="absolute top-0 left-0 h-full w-full bg-black/50" />
+
+        {/* room title */}
+        <h1 className="z-20 text-center font-primary text-6xl text-white">
+          {name} Details
+        </h1>
       </div>
 
       {/* room data */}
@@ -163,9 +142,8 @@ const RoomDetails = () => {
             <h2 className="h2">{name}</h2>
             <p className="mb-8">{description}</p>
             <img
-              src={roomImageUrl}
+              src={`${BASE_URL}${room.image}`}
               alt="room details image"
-              className="mb-8"
             />
 
             {/* room facilities */}
@@ -189,7 +167,7 @@ const RoomDetails = () => {
                       className="flex flex-1 items-center gap-x-3"
                     >
                       {/* <div className="text-2xl text-accent">{icon}</div> */}
-                      
+
                       <div className="text-base">{name}</div>
                     </div>
                   );
@@ -230,7 +208,9 @@ const RoomDetails = () => {
                 className="btn btn-lg btn-primary w-full"
                 onClick={handleBooking}
               >
-                {isAuthenticated() ? `Book now from $${price}` : 'Login to Book'}
+                {isAuthenticated()
+                  ? `Book now from $${price}`
+                  : "Login to Book"}
               </button>
             </div>
 

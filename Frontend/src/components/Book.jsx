@@ -3,11 +3,12 @@ import { loadStripe } from "@stripe/stripe-js";
 
 // Load Stripe outside the component to avoid recreating it on every render
 const stripePromise = loadStripe("pk_test_YOUR_PUBLISHABLE_KEY_HERE");
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const Payment = () => {
   const handleCheckout = async () => {
     const stripe = await stripePromise;
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/bookings/create-checkout-session`, {
+    const response = await fetch(`${BASE_URL}/api/bookings/create-checkout-session`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

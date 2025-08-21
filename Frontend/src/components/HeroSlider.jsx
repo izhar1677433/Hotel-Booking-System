@@ -12,10 +12,15 @@ import "swiper/css/effect-fade";
 import HeroImg1 from "../assets/images/heroSlider/1.jpg";
 import HeroImg2 from "../assets/images/heroSlider/2.jpg";
 import HeroImg3 from "../assets/images/heroSlider/3.jpg";
+import HeroImg1lg from "../assets/images/rooms/1-lg.png";
 import HeroImg1st from "../assets/images/rooms/1.png";
+import HeroImg2nd from "../assets/images/rooms/2-lg.png";
 import HeroImg2lg from "../assets/images/rooms/2.png";
+import HeroImg3lg from "../assets/images/rooms/3-lg.png";
 import HeroImg3rd from "../assets/images/rooms/3.png";
+import HeroImg4lg from "../assets/images/rooms/4-lg.png";
 import HeroImg4th from "../assets/images/rooms/4.png";
+import HeroImg5lg from "../assets/images/rooms/5-lg.png";
 import HeroImg5th from "../assets/images/rooms/5.png";
 import Room1 from "../assets/images/rooms/room1.jpg";
 import Room2 from "../assets/images/rooms/room2.jpg";
@@ -45,7 +50,7 @@ const slides = [
   },
   {
     title: "Summer Vacation",
-    background: HeroImg1,
+    background: HeroImg1lg,
     btnText: "Take Tour",
   },
   {
@@ -60,12 +65,12 @@ const slides = [
   },
   {
     title: "Clean and Green Rooms",
-    background: HeroImg2,
+    background: HeroImg2nd,
     btnText: "Take Tour",
   },
   {
     title: "Vip Rooms",
-    background: HeroImg3,
+    background: HeroImg3lg,
     btnText: "Take Tour",
   },
   {
@@ -75,7 +80,7 @@ const slides = [
   },
   {
     title: "Your Luxury Hotel For Vacation",
-    background: Room3,
+    background: HeroImg4lg,
     btnText: "Take Tour",
   },
   {
@@ -85,7 +90,7 @@ const slides = [
   },
   {
     title: "Your Luxury Hotel For Vacation",
-    background: Room5,
+    background: HeroImg5lg,
     btnText: "Take Tour",
   },
   {
@@ -146,7 +151,7 @@ const HeroSlider = () => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        className="heroSlider h-[600px] lg:h-[860px]"
+        className="heroSlider h-[320px] sm:h-[400px] md:h-[600px] lg:h-[860px]"
       >
         {slides.map((slide, index) => {
           // destructure slide
@@ -158,14 +163,14 @@ const HeroSlider = () => {
               key={index}
             >
               {/* hero data */}
-              <div className="container z-20 mx-auto text-center text-white">
-                <div className="mb-5 font-tertiary  uppercase tracking-[6px]">
+              <div className="container z-20 mx-auto text-center text-white px-2 sm:px-8">
+                <div className="mb-5 font-tertiary uppercase tracking-[4px] text-xs sm:text-base md:text-lg">
                   Just Enjoy & Relax
                 </div>
-                <h1 className=" font-sans mx-auto mb-6 max-w-[920px] font-primary text-[32px] uppercase tracking-[2px] lg:text-[68px]">
+                <h1 className="font-sans mx-auto mb-6 max-w-[920px] font-primary text-[24px] sm:text-[32px] md:text-[48px] lg:text-[68px] uppercase tracking-[2px] leading-tight">
                   {title}
                 </h1>
-                <button className="btn btn-primary btn-lg bg-blue-500 mx-auto">
+                <button className="btn btn-primary btn-lg bg-blue-500 mx-auto text-xs sm:text-base px-4 sm:px-8 py-2 sm:py-3">
                   <a href="https://app.lapentor.com/sphere/virtual-tour-to-the-hotal">{btnText}</a>
                 </button>
               </div>

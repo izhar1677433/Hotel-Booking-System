@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import RoomDetails from "./pages/RoomDetails";
 import NotFound from "./pages/NotFound";
+
 import Rooms from "./pages/Rooms";
 import Contact from "./pages/contact";
 import Restaurant from "./pages/Restaurant";
@@ -26,45 +27,29 @@ import Cancel from "./pages/Cancel";
 import Admin from "./components/Admin";
 import Adminlogin from "./components/Adminlogin";
 
-// Main Layout component that includes Header and Footer
-const MainLayout = () => {
-  return (
-    <div className="flex min-h-screen flex-col">
+// Layout component that includes Header and Footer
+const Layout = () => {
+  return ( 
+    <>
       <Header />
-      <main className="flex-1">
-        <Outlet />
-      </main>
+      <Outlet />
       <Footer />
-    </div>
-  );
-};
-
-// Auth Layout for login/admin pages (no header/footer)
-const AuthLayout = () => {
-  return (
-    <div className="min-h-screen">
-      <Outlet />
-    </div>
-  );
-};
-
-// Admin Layout for admin pages
-const AdminLayout = () => {
-  return (
-    <div className="min-h-screen">
-      <Outlet />
-    </div>
+    </>
   );
 };
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <Layout />,
     children: [
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
       {
         path: "rooms",
@@ -83,6 +68,10 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
+        path: "pages/Login",
+        element: <Login />,
+      },
+      {
         path: "contact",
         element: <Contact />,
       },
@@ -99,43 +88,27 @@ const router = createBrowserRouter([
         element: <Cancel />,
       },
       {
-        path: "*",
-        element: <NotFound />,
-      },
-    ],
-  },
-  {
-    path: "/auth",
-    element: <AuthLayout />,
-    children: [
-      {
-        path: "login",
-        element: <Login />,
+        path: "admin",
+        element: (
+          <ProtectedRoute requireAdmin={true}>
+            <Admin />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "admin-login",
-        element: <Adminlogin />,
-      },
-    ],
-  },
-  {
-    path: "/admin",
-    element: (
-      <ProtectedRoute requireAdmin={true}>
-        <AdminLayout />
-      </ProtectedRoute>
-    ),
-    children: [
-      {
-        index: true,
-        element: <Admin />,
+        path: "admin",
+        element:  <ProtectedRoute requireAdmin={true}>
+          <Adminlogin />,
+          </ProtectedRoute>
+            
       },
     ],
   },
 ]);
 
-const App = () => {
-  return <RouterProvider router={router} />;
-};
-
+  const App = () => {
+    return (
+      <RouterProvider router={router} />
+    );
+  };
 export default App;

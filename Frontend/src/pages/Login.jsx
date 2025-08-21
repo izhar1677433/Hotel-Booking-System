@@ -3,30 +3,30 @@ import { Facebook, GitHub, Google } from "@mui/icons-material";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 // Move LoginForm outside to prevent recreation on every render
-const LoginForm = ({ email, setEmail, loginPassword, setLoginPassword, handleLogin, setIsLogin }) => {
+const LoginForm = ({
+  email,
+  setEmail,
+  loginPassword,
+  setLoginPassword,
+  handleLogin,
+  setIsLogin,
+}) => {
   return (
-    <div className="flex w-full max-w-4xl flex-col items-center rounded-2xl bg-white shadow-2xl transition duration-1000 ease-out md:w-1/3">
+    <div className="flex w-full  max-w-4xl flex-col items-center rounded-2xl bg-white shadow-2xl transition duration-1000 ease-out md:w-1/3">
       <h2 className="p-3 text-3xl font-bold text-pink-500">Royal Heights</h2>
       <div className="inline-block w-20 border-[1px] border-solid border-blue-500"></div>
       <h3 className="pt-2 text-xl font-semibold text-blue-500">LogIn!</h3>
-      <div className="m-4 flex items-center justify-center space-x-2">
-        <a href="https://www.facebook.com/">
-          <Facebook />
-        </a>
-        <a href="https://github.com/">
-          <GitHub />
-        </a>
-        <a href="https://accounts.google.com/">
-          <Google />
-        </a>
-      </div>
-
       {/* Login Inputs */}
       <form
-      onSubmit={handleLogin} 
-      autoSave="email"
-      className="flex flex-col items-center justify-center bg-white">
+        onSubmit={handleLogin}
+        autoSave="email"
+        className="flex flex-col items-center justify-center bg-white"
+      >
         <input
           type="email"
           value={email}
@@ -64,15 +64,15 @@ const LoginForm = ({ email, setEmail, loginPassword, setLoginPassword, handleLog
 };
 
 // Move SignUpForm outside to prevent recreation on every render
-const SignUpForm = ({ 
-  registerName, 
-  setRegisterName, 
-  registerEmail, 
-  setRegisterEmail, 
-  registerPassword, 
-  setRegisterPassword, 
-  handleregister, 
-  setIsLogin 
+const SignUpForm = ({
+  registerName,
+  setRegisterName,
+  registerEmail,
+  setRegisterEmail,
+  registerPassword,
+  setRegisterPassword,
+  handleregister,
+  setIsLogin,
 }) => {
   return (
     <div className="flex w-full max-w-4xl flex-col items-center rounded-2xl bg-white text-black shadow-2xl transition duration-1000 ease-in md:w-1/3">
@@ -81,17 +81,6 @@ const SignUpForm = ({
       <h3 className="pt-2 text-xl font-semibold text-blue-600">
         Create Account!
       </h3>
-      <div className="m-4 flex items-center justify-center space-x-2">
-        <a href="https://www.facebook.com/">
-          <Facebook className="text-black" />
-        </a>
-        <a href="https://github.com/">
-          <GitHub className="text-black" />
-        </a>
-        <a href="https://accounts.google.com/">
-          <Google className="text-black" />
-        </a>
-      </div>
 
       {/* Register Inputs */}
       <form
@@ -132,9 +121,7 @@ const SignUpForm = ({
 
       <div className="inline-block w-20 border-[1px] border-solid border-white"></div>
       <p className="mt-4 text-sm text-black">
-        <a href={`${import.meta.env.VITE_BASE_URL}/pages/Login`}>
-          Already have an account?
-        </a>
+        <a href="http://localhost:5173/pages/Login">Already have an account?</a>
       </p>
       <p
         className="mb-4 cursor-pointer text-sm font-medium text-black"
@@ -148,8 +135,14 @@ const SignUpForm = ({
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && user.role === "admin") {
+      navigate("/admin");
+    }
+  }, [user, navigate]);
 
   // Login States
   const [email, setEmail] = useState("");
@@ -164,8 +157,7 @@ const Login = () => {
   const handleregister = async (e) => {
     e.preventDefault();
     try {
-
-      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/register`, {
+      const res = await fetch(`${BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -180,7 +172,7 @@ const Login = () => {
       const data = await res.json();
 
       if (res.ok) {
-        // alert("Registration successful! Please login.");
+        alert("Registration successful! Please login.");
         setIsLogin(true);
         // Clear form
         setRegisterName("");
@@ -191,14 +183,14 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Registration error:", error);
-      // alert("An error occurred. Please try again.");
+      alert("An error occurred. Please try again.");
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/login`, {
+      const res = await fetch(`${BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -210,14 +202,15 @@ const Login = () => {
       });
 
       const data = await res.json();
-
       if (res.ok) {
+        console.log("Login successful:", data);
         login(data.user, data.token);
         // alert("Login successful!");
-        if (data.user.role === 'admin') {
-          navigate('/admin');
+        if (data.user.role === "admin") {
+          console.log("navigate to admin")
+          navigate("/admin");
         } else {
-          navigate('/');
+          navigate("/");
         }
       } else {
         alert(data.msg || "Login failed.");
@@ -229,7 +222,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 md:py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center md:py-2">
       <main className="flex w-full items-center px-2 md:px-20">
         <div className="hidden flex-1 flex-col space-y-1 md:inline-flex">
           <p className="text-6xl font-bold text-pink-500">Royal Heights</p>
@@ -239,7 +232,7 @@ const Login = () => {
           </p>
         </div>
         {isLogin ? (
-          <LoginForm 
+          <LoginForm
             email={email}
             setEmail={setEmail}
             loginPassword={loginPassword}
@@ -248,7 +241,7 @@ const Login = () => {
             setIsLogin={setIsLogin}
           />
         ) : (
-          <SignUpForm 
+          <SignUpForm
             registerName={registerName}
             setRegisterName={setRegisterName}
             registerEmail={registerEmail}
@@ -265,3 +258,5 @@ const Login = () => {
 };
 
 export default Login;
+
+

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as FaIcons from "react-icons/fa";
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
   const [stats, setStats] = useState({});
@@ -12,12 +12,12 @@ export default function AdminContacts() {
   const fetchContacts = async () => {
     try {
               const [contactsRes, statsRes] = await Promise.all([
-          fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/contacts`, {
+          fetch(`${BASE_URL}/api/admin/contacts`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }),
-          fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/contacts/stats`, {
+          fetch(`${BASE_URL}/api/admin/contacts/stats`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -47,7 +47,7 @@ export default function AdminContacts() {
   // Update contact status
   const handleStatusUpdate = async (contactId, newStatus) => {
     try {
-              const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/contacts/${contactId}`, {
+              const res = await fetch(`${BASE_URL}/api/admin/contacts/${contactId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export default function AdminContacts() {
     if (!window.confirm("Are you sure you want to delete this contact submission?")) return;
     
     try {
-              const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/contacts/${contactId}`, {
+              const res = await fetch(`${BASE_URL}/api/admin/contacts/${contactId}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

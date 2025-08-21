@@ -53,66 +53,58 @@ const AnimatedGallery = () => {
   };
 
   return (
-  <div className="maindev   ">
-     <h2 className="gallery-title pt-[200px] container text-5xl font-bold min-h-full">Foods </h2>
-      <div className="slider-wrapper">
-        <button className="nav-btn left" onClick={prevSlide}>
+    <div className="flex flex-col items-center justify-center min-h-screen   py-30">
+      <h2 className="text-5xl font-bold mb-10 text-gray-800 tracking-tight">Foods Gallery</h2>
+      <div className="relative w-full max-w-xl flex items-center justify-center">
+        <button
+          className="absolute left-0 z-10 bg-white/80 hover:bg-white shadow-lg rounded-full p-3 text-2xl text-gray-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          onClick={prevSlide}
+          aria-label="Previous"
+        >
           &#10094;
         </button>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            className="slide portrait"
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-          >
-            <img src={images[index].src} alt={images[index].title} />
-            <div className="caption">
-              <h2>{images[index].title}</h2>
-              <p>{images[index].description}</p>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        <button className="nav-btn right" onClick={nextSlide}>
+        <div className="w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              className="relative overflow-hidden rounded-2xl shadow-2xl bg-white"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5 }}
+            >
+              <img
+                src={images[index].src}
+                alt={images[index].title}
+                className="w-full h-96 object-cover rounded-2xl"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-2xl" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
+                <h2 className="text-2xl font-bold mb-2 drop-shadow-lg">{images[index].title}</h2>
+                <p className="text-base drop-shadow-lg">{images[index].description}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        <button
+          className="absolute right-0 z-10 bg-white/80 hover:bg-white shadow-lg rounded-full p-3 text-2xl text-gray-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          onClick={nextSlide}
+          aria-label="Next"
+        >
           &#10095;
         </button>
       </div>
-  
-    <div className="gallery-container">
-      <h2 className="gallery-title pt-[200px] text-5xl font-bold min-h-full">Foods </h2>
-      <div className="slider-wrapper">
-        <button className="nav-btn left" onClick={prevSlide}>
-          &#10094;
-        </button>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            className="slide portrait"
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-          >
-            <img src={images[index].src} alt={images[index].title} />
-            <div className="caption">
-              <h2>{images[index].title}</h2>
-              <p>{images[index].description}</p>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        <button className="nav-btn right" onClick={nextSlide}>
-          &#10095;
-        </button>
+      <div className="flex gap-2 mt-6">
+        {images.map((img, i) => (
+          <button
+            key={i}
+            className={`w-3 h-3 rounded-full border-2 border-gray-400 transition-all duration-200 ${i === index ? 'bg-blue-500 border-blue-500 scale-125' : 'bg-white hover:bg-blue-200'}`}
+            onClick={() => setIndex(i)}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
       </div>
-    </div>  <br></br><br></br><br></br> 
     </div>
-    
   );
 };
 
