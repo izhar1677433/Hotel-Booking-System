@@ -23,8 +23,7 @@ exports.createRoom = async (req, res) => {
   try {
     const room = await Room.create(req.body);
     res.status(201).json(room);
-    console.log('created');
-    
+    console.log("created");
   } catch (err) {
     res.status(500).json({ msg: "Error creating room" });
   }
@@ -37,19 +36,27 @@ exports.deleteRoom = async (req, res) => {
       return res.status(404).json({ msg: "Room not found" });
     }
     res.json({ msg: "Room deleted successfully" });
-    console.log('deleted');
-    
+    console.log("deleted");
   } catch (err) {
     res.status(500).json({ msg: "Error deleting room" });
   }
 };
 
 exports.updateRoom = async (req, res) => {
- try {
-    const room = await Room.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  try {
+    const room = await Room.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     if (!room) return res.status(404).json({ msg: "Room not found" });
     res.json(room);
   } catch (err) {
     res.status(500).json({ msg: "Error updating room" });
   }
+};
+
+exports.uploadRoomImage = async (req, res) => {
+  if (!req.file) return res.status(400).send('No file uploaded.');
+  const room = new Room({ imagePath: req.file.path });
+  await room.save();
+  res.send('Image uploaded and saved to database.');
 };

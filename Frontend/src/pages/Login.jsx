@@ -121,7 +121,7 @@ const SignUpForm = ({
 
       <div className="inline-block w-20 border-[1px] border-solid border-white"></div>
       <p className="mt-4 text-sm text-black">
-        <a href="http://localhost:5173/pages/Login">Already have an account?</a>
+        <a href="/pages/Login">Already have an account?</a>
       </p>
       <p
         className="mb-4 cursor-pointer text-sm font-medium text-black"

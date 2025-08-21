@@ -30,10 +30,11 @@ function AdminRooms() {
 
   const [imagePreview, setImagePreview] = useState(null);
 
+  console.log(BASE_URL,"BASE_URL")
   // Fetch rooms and extract facilities
   const fetchRooms = async () => {
     try {
-      const res = await fetch(`${import.meta.env}/api/admin/rooms`, {
+  const res = await fetch(`${BASE_URL}/api/admin/rooms`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

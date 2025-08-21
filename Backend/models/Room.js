@@ -15,6 +15,7 @@ const roomSchema = new mongoose.Schema(
     image: { type: String },                           // main image
     imageLg: { type: String },                         // large image
     facilities: [facilitySchema],                      // Array of { name, icon }
+    imagePath: String,
   },
   { timestamps: true }
 );
