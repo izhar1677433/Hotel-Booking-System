@@ -1,9 +1,0 @@
-/* ::selection */
-::selection {
-  @apply bg-accent text-white;
-}
-
-/* ::-webkit-scrollbar */
-::-webkit-scrollbar {
-  @apply hidden;
-}
